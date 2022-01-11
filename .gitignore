@@ -2,10 +2,10 @@
 *.log
 *.txt
 
+
 #ignore __pycache__ folders
 **/__pycache__/
 
 #ignore the Test folder in Backend
 **/Test/
 **/test/
-
