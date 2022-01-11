@@ -1,0 +1,14 @@
+{
+    "site": {
+        
+        "EN": {
+            "ThePirateBay": "https://tpb.party/search/data"
+        },
+        "ALL": {
+            "TorLock": "https://www.torlock.com/?qq=1&q=data"
+        }
+    },
+    "blacklisted-website": {
+        "OxTorrent": "https://www.oxtorrent.com"
+    }
+}
