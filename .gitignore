@@ -2,6 +2,7 @@
 *.log
 *.txt
 
+**/logs/
 
 #ignore __pycache__ folders
 **/__pycache__/

@@ -2,8 +2,6 @@ import asyncio
 import json
 import logging
 import time
-from typing import final
-from requests import get as rget
 import aiohttp
 from bs4 import BeautifulSoup
 
@@ -41,8 +39,8 @@ class TorrentSearcher():
                     websites_file['site'][lang][torrent_website_name])
 
         # Store formatted urls in a var
-        self.finals_url = [
-            w.replace('data', (self.name+"%20"+self.language)) for w in result_urls]
+        self.finals_url = [w.replace('data', self.name) if ('tpb' or 'pirate' or 'bay') in w else w.replace(
+            'data', (self.name+"%20"+self.language)) for w in result_urls]
 
     def _get_search_pages(self) -> dict:
         '''
@@ -91,11 +89,11 @@ class TorrentSearcher():
         for site_index in list(data):
             soup = BeautifulSoup(data[site_index], 'lxml')
             logging.info(f'Parsing {site_index}')
-            # Parsing data for torrent9's websites:
-            if ("torrent") in site_index:
+            # Tried many times to parse data from torrent9 websites but magnet links are javascript scripts ... and i was banned soo cannot work on that
+            '''if ("torrent9") in site_index:
                 tbody = soup.find('tbody')
                 try:
-                    # TODO parsing method for Torrent9.si
+                    
                     for trs in tbody.find_all('tr'):
                         name = trs.find(
                             'a', {'style': 'color:#000; font-size:12px; font-weight:bold;'}).text
@@ -118,7 +116,7 @@ class TorrentSearcher():
                     # When there is not any <tr> to parse Bs return an AttributeError: TypeError
                     # So just ignore it
                     logging.warning(f'Exception: {e}')
-                    pass
+                    pass'''
 
             if ("tpb" or "pirate" or "bay") in site_index:
                 table = soup.find('table')
@@ -152,7 +150,7 @@ class TorrentSearcher():
                 except AttributeError or TypeError as e:
                     pass
 
-            ''' Unused & underwork
+            # Underwork
             if ("torlock") in site_index:
                 table = soup.find('table', {
                     'class': 'table table-striped table-bordered table-hover table-condensed'})
@@ -171,9 +169,8 @@ class TorrentSearcher():
                             pass
                 except AttributeError as e:
                     logging.info(f'No more tr !! {e}')
-            
-            '''
 
+        # If the name have to correspond perfectly (uppercased but you've understand)
         if specific:
             for mov in movies.keys():
                 if not self.name.replace('%20', ' ').capitalize() in movies[mov].capitalize():

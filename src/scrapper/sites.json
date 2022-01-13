@@ -1,8 +1,5 @@
 {
     "site": {
-        "FR": {
-            "Torrent9": "https://www.torrentx.ws/data"
-        },
         "EN": {
             "ThePirateBay": "https://tpb.party/search/data"
         },

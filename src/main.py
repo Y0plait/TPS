@@ -1,12 +1,18 @@
 import logging
-from flask import Flask, render_template
-from flask import request
+from flask import Flask, render_template, request
 
-import BackEnd.searcher
+import scrapper.searcher
 
 app = Flask(__name__)
-logging.basicConfig(filename='./flask_app.log', filemode='w',
+logging.basicConfig(filename='./logs/TPS.log', filemode='w',
                     format='%(asctime)s ; %(levelname)s: %(message)s', level=logging.WARNING)
+
+
+# Define flask's log file to flask.log
+flask_logger = logging.getLogger('werkzeug')
+flask_handler = logging.FileHandler('./logs/flask.log')
+flask_logger.addHandler(flask_handler)
+app.logger.addHandler(flask_handler)
 
 
 @app.route('/')
@@ -38,7 +44,7 @@ def search():
         movie = request.form['search-name']
         lang = request.form['lang-select']
         quality = request.form['quality-select']
-        worker = BackEnd.searcher.TorrentSearcher(movie, lang, quality)
+        worker = scrapper.searcher.TorrentSearcher(movie, lang, quality)
         data = worker._get_magnet_links()
 
         return render_template('search.html', result=data, quality=quality, data=data)

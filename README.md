@@ -5,7 +5,7 @@
 TPS is a python movie researcher scrapper. It scraps data from ThePirateBay and Torrent9's sites (for the moment).
 
 - Type the name of your movie
-![SearchBar](../static/images/SearchBar.png "SearchBar")
+![SearchBar](https://github.com/Y0plait/TPS/tree/master/src/static/images/SearchBar.png "SearchBar")
 - Click on search
 - And here you go !! A list with all the results with their name, magnet link, size and even number of seeders !
 
@@ -35,7 +35,7 @@ TPS is a python movie researcher scrapper. It scraps data from ThePirateBay and 
 
 - #### Scraping:
 
-	- A PirateBay and Torrent9 scrapper made by myself 👍 (`Backend/searcher.py`)
+	- A PirateBay and Torrent9 scrapper made by myself 👍 (`scrapper/searcher.py`)
 
 
 ## Installation

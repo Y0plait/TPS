@@ -1,7 +1,7 @@
 import json
 import searcher
 
-worker = searcher.TorrentSearcher("Le Hobbit", "FR", "1080")
+worker = searcher.TorrentSearcher("Venom", "FR", "1080")
 data = str(json.dumps(worker._isolate_links(), indent=4)).encode("utf-8")
 
 
