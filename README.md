@@ -35,8 +35,7 @@ TPS is a python movie researcher scrapper. It scraps data from ThePirateBay and 
 
 - #### Scraping:
 
-	- A PirateBay and Torrent9 scrapper made by myself 👍 (`scrapper/searcher.py`)
-
+	- qBittorrent integrated search engine
 
 ## Installation
 
@@ -55,12 +54,21 @@ TPS is a python movie researcher scrapper. It scraps data from ThePirateBay and 
 	 $ pip install -r requirements.txt
 	```
 
-- Add your [qBittorrent credentials](#Prerequisites) to the qBitCreds.json file :
+- Edit the `app/settings.json` file :
 	```json
 	{
-	"username": "your_username_here",
-	"password": "your_password"
-	}
+    "tmdb_language": "FR",
+    "qbittorrent_webui": {
+        "ip": "127.0.0.1",
+        "port": "8080",
+        "credentials": {
+            "username": "admin",
+            "password": "pass"
+        }
+    },
+    "default_saving_path": "",
+    "strict_search": false
+}
 	```
 
 - Launch the Flask Web Server :
