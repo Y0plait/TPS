@@ -1,0 +1,13 @@
+{
+    "tmdb_language": "FR",
+    "qbittorrent_webui": {
+        "ip": "127.0.0.1",
+        "port": "8080",
+        "credentials": {
+            "username": "admin",
+            "password": "pass"
+        }
+    },
+    "default_saving_path": "",
+    "strict_search": false
+}

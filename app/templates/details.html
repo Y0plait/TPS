@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+<!--Set the title of the page to the movie name-->
+{% block title %} {{movie_data.title}} {% endblock %}
+
+<!--Custom CSS stylesheet for this page-->
+{% block css_stylesheet %}
+<link href='../static/css/details.css' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+<!--Content of the page-->
+{% block content %}
+
+<div class="movie-info">
+    <img src='https://www.themoviedb.org/t/p/w400{{movie_data.poster_path}}' class="rounded float-start image-details">
+
+
+    <h3 class="movie_description">{{movie_data.title}} ({{movie_data.release_date}})</h3>
+    <p class='lead'>Note : {{movie_data.popularity}}</p>
+
+
+    <h6>Synopsis :</h6>
+    <p class='h6'>{{movie_data.overview}}</p>
+
+    <p><a class='link-white' href="https://tmdb.org/movie/{{id}}"><abbr title="The Movie Database"
+                class="initialism">TMBD's </abbr>
+            "{{movie_data.title}}" site.</a></p>
+
+    <div class='movie-dwnl'>
+        <form method="post" action="#">
+            <br>
+            <span style="font-size: 16pt; font-style: italic;">Télécharger ce film : </span><input class="dwnl-input"
+                type="image" id="dwnl" name="dwnl" value="dwnl" src="../static/misc/download.png" alt="Download" />
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}

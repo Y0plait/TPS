@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Configuration{% endblock %}
+
+{% block content %}
+
+<h4>Configuration :</h4>
+
+<br>
+<span>TMDB's language (Current is {{settings['tmdb_language']}}):</span>
+<select class="form-select" aria-label="tmdb_lang">
+    <option value="FR">FR</option>
+    <option value="EN">EN</option>
+</select>
+<br>
+
+<img class="rounded qb-icon" src="https://www.qbittorrent.org/favicon.ico">
+<h5>qBittorrent :</h5>
+<br>
+<span>IP address of the qBittorrent WebUI:</span>
+<input class="form-control" type="text" placeholder="{{settings['qbittorrent_webui']['ip']}}"
+    aria-label="default input example">
+
+<span>Port of the qBittorrent WebUI:</span>
+<input class="form-control" type="text" placeholder="{{settings['qbittorrent_webui']['port']}}"
+    aria-label="default input example">
+
+<label>WebUI username :</label>
+<input class="form-control" type="text" value="{{settings['qbittorrent_webui']['credentials']['username']}}"
+    aria-label="default input example">
+
+<label>WebUI password :</label>
+<input class="form-control" type="text" value="{{settings['qbittorrent_webui']['credentials']['password']}}"
+    aria-label="default input example">
+
+
+{% endblock %}

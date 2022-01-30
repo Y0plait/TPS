@@ -1,0 +1,43 @@
+/**************************************************/
+/*Movie details*/
+
+.movie-info {
+    justify-content: center;
+    flex-wrap: wrap;
+    /*background-color: rgb(0,0,0); /* Fallback color */
+    /*background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+    background-image: linear-gradient(to right, rgb(12, 13, 14) 150px, rgba(5, 21, 58, 0.84) 100%);
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+}
+
+  /*
+.movie_description{
+    padding-top: 25px;
+    padding-right: 20px;
+    text-align: justify;
+  }
+  */
+.dwnl-input{
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+  }
+
+/*.dwnl-input:hover{
+    background-color:rgb(172, 176, 180)
+}
+*/
+.dwnl-input:active{
+
+    transform: translateY(4px);
+}

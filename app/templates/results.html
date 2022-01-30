@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Search Result{% endblock %}
+
+<!--Custom CSS stylesheet for this page-->
+{% block css_stylesheet %}
+<link href='../static/css/index_results.css' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block content %}
+
+<!-- Searchbar -->
+<div class="d-flex justify-content-center h-100">
+    <form class="search-form" action="{{ url_for('index')}}" method="post">
+        <div class="search"> <input name="search-name" type="text" class="search-input"
+                placeholder="Entrez le nom d'un film ex: OSS 117" name="">
+            <input type="submit" value="🔍" class="search-icon">
+            <i class="fa fa-search"></i> </a>
+        </div>
+    </form>
+</div>
+
+<!-- results -->
+<div class="popular-movies">
+    <p class='h3'>Result for {{search}} :</p>
+</div>
+
+<section class="pb-2">
+    <div class="container text-center">
+
+        <div class="row row-cols-3 row-cols-sm-4 row-cols-md-5">
+            {% for key, value in data.items() %}
+            <div class="single-mov col mt-4">
+                <a href="./movie/{{key}}">
+                    {% if value['poster_path'] %}
+                    <img class="img-fluid rounded" src="https://www.themoviedb.org/t/p/w400{{value['poster_path']}}"
+                        alt="">
+
+                    {% else %}
+                    <img class="unvailable img-fluid rounded" src="../static/misc/image-unvailable.jpg" alt="" width="400">
+
+                    {% endif %}
+                    <p class='h6' class='text-white'>{{value['title']}}</p>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
