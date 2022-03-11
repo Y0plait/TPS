@@ -5,32 +5,62 @@
 
 <h4>Configuration :</h4>
 
-<br>
-<span>TMDB's language (Current is {{settings['tmdb_language']}}):</span>
-<select class="form-select" aria-label="tmdb_lang">
-    <option value="FR">FR</option>
-    <option value="EN">EN</option>
-</select>
-<br>
+<form class="settings-form" action="{{ url_for('config')}}" method="post">
+    <div class="tmdb-settings">
+        <br>
+        <span>TMDB's language (Current is {{settings['tmdb_language']}}):</span>
+        <select class="form-select" aria-label="tmdb_lang" name="tmdb_lang">
+            <option value="FR">FR</option>
+            <option value="EN">EN</option>
+        </select>
+        <br>
+    </div>
 
-<img class="rounded qb-icon" src="https://www.qbittorrent.org/favicon.ico">
-<h5>qBittorrent :</h5>
-<br>
-<span>IP address of the qBittorrent WebUI:</span>
-<input class="form-control" type="text" placeholder="{{settings['qbittorrent_webui']['ip']}}"
-    aria-label="default input example">
+    <div class="qbittorrent-settings">
+        <img class="rounded qb-icon" src="https://www.qbittorrent.org/favicon.ico">
+        <h5>qBittorrent :</h5>
+        <br>
+        <span>IP address of the qBittorrent WebUI:</span>
+        <input class="form-control" type="text" placeholder="{{settings['qbittorrent_webui']['ip']}}" aria-label="qb ip"
+            name="qb_ip">
 
-<span>Port of the qBittorrent WebUI:</span>
-<input class="form-control" type="text" placeholder="{{settings['qbittorrent_webui']['port']}}"
-    aria-label="default input example">
+        <span>Port of the qBittorrent WebUI:</span>
+        <input class="form-control" type="text" placeholder="{{settings['qbittorrent_webui']['port']}}"
+            aria-label="qb port" name="qb_port">
 
-<label>WebUI username :</label>
-<input class="form-control" type="text" value="{{settings['qbittorrent_webui']['credentials']['username']}}"
-    aria-label="default input example">
+        <label>WebUI username :</label>
+        <input class="form-control" type="text" value="{{settings['qbittorrent_webui']['credentials']['username']}}"
+            aria-label="qb username" name="qb_username">
 
-<label>WebUI password :</label>
-<input class="form-control" type="text" value="{{settings['qbittorrent_webui']['credentials']['password']}}"
-    aria-label="default input example">
+        <label>WebUI password :</label>
+        <input type="password" class="form-control" type="text"
+            value="{{settings['qbittorrent_webui']['credentials']['password']}}" aria-label="qb password"
+            name="qb_password">
+
+        <label>Torrents save path :</label>
+        <input class="form-control" type="text" value="{{settings['default_saving_path']}}"
+            aria-label="torrent filepath" name="file_path">
+
+        <div class="form-check form-switch">
+            <!--{% if settings['strict_search'] %}-->
+            {% if settings['strict_search'] == ("on") %}
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="restrictive" value="on"
+                checked>
+            {% else %}
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="restrictive" value="off">
+            {% endif %}
+            <!--<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="restrictive" checked>-->
+            <!--{% endif %}-->
+            <label class="form-check-label" for="flexSwitchCheckChecked">Restrictive search</label>
+        </div>
+    </div>
+    <br>
+    <div class=" misc-settings">
+        <h5>Other settings :</h5>
+    </div>
+
+    <input name="apply-btn" type="submit" value="Apply changes">
+</form>
 
 
 {% endblock %}

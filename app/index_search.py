@@ -1,8 +1,10 @@
-from app import app, render_template, request, redirect, url_for
-from tmdbv3api import TMDb, Movie
+import json
 from datetime import date
 from pathlib import Path
-import json
+
+from tmdbv3api import Movie, TMDb
+
+from app import app, redirect, render_template, request, url_for
 
 tmdb = TMDb()
 tmdb.api_key = '0b8f04cc00bf9b715120f6d1667612e7'
@@ -40,27 +42,34 @@ else:
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index.html', methods=['GET', 'POST'])
 def index():
+
+    # User searched a movie:
     if request.method == 'POST':
         searched_movie = request.form['search-name']
         if searched_movie == "":
             return render_template('index.html', data=popular_films, error="Please enter a movie name")
         else:
+            # Redirects to the search results function
             return redirect(url_for("search_results", search=searched_movie))
+
+    # User access the page
     else:
         return render_template('index.html', data=popular_films, error="")
 
+
 # When a poster on the index.html is clicked call this function :
-
-
 @app.route('/movie/<mov_id>', methods=['GET', 'POST'])
 def mov_details(mov_id):
 
     movie = Movie()
     m = movie.details(mov_id)
 
+    # User clicks the download button:
     if request.method == 'POST':
 
         return render_template('details.html', movie_data=m, id=mov_id)
+
+    # User access the page
     else:
         return render_template('details.html', movie_data=m, id=mov_id)
 

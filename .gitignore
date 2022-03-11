@@ -1,2 +1,3 @@
 /tps_venv
 **/__pycache__
+/app/tmdb/*.json
