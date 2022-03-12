@@ -6,11 +6,15 @@ from tmdbv3api import Movie, TMDb
 
 from app import app, redirect, render_template, request, url_for
 
+# Loading the configuration file:
+with open('app/settings.json', 'r') as conf_file:
+    conf = json.loads(conf_file.read())
+
 tmdb = TMDb()
-tmdb.api_key = '0b8f04cc00bf9b715120f6d1667612e7'
+tmdb.api_key = conf['tmdb_api_key']
 tmdb_poster_url = 'https://www.themoviedb.org/t/p/w400'
 
-tmdb.language = 'fr'
+tmdb.language = conf['tmdb_language']
 tmdb.debug = True
 
 popular_today_file = f'./app/tmdb/{date.today()}.json'

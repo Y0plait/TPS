@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Configuration{% endblock %}
-
+{% block css_stylesheet %}
+<link href='../static/css/conf.css' rel='stylesheet' type='text/css'>{% endblock %}
 {% block content %}
 
 <h4>Configuration :</h4>
@@ -14,10 +15,13 @@
             <option value="EN">EN</option>
         </select>
         <br>
+        <span>Tmdb API key:</span>
+        <input class="form-control" type="text" placeholder="{{settings['tmdb_api_key']}}" aria-label="tmdb api key"
+            name="tmdb_api_key">
+        <br>
     </div>
 
     <div class="qbittorrent-settings">
-        <img class="rounded qb-icon" src="https://www.qbittorrent.org/favicon.ico">
         <h5>qBittorrent :</h5>
         <br>
         <span>IP address of the qBittorrent WebUI:</span>
@@ -40,8 +44,8 @@
         <label>Torrents save path :</label>
         <input class="form-control" type="text" value="{{settings['default_saving_path']}}"
             aria-label="torrent filepath" name="file_path">
-
-        <div class="form-check form-switch">
+        <br>
+        <div class="form-check form-switch rest_search">
             <!--{% if settings['strict_search'] %}-->
             {% if settings['strict_search'] == ("on") %}
             <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="restrictive" value="on"
@@ -55,11 +59,8 @@
         </div>
     </div>
     <br>
-    <div class=" misc-settings">
-        <h5>Other settings :</h5>
-    </div>
 
-    <input name="apply-btn" type="submit" value="Apply changes">
+    <input class="apply_btn"name="apply-btn" type="submit" value="Apply changes">
 </form>
 
 

@@ -1,0 +1,17 @@
+span, label, h5 {
+    margin-left: 10px;
+}
+
+h5, h4 {
+    margin-bottom: 2px;
+    margin-top: 1px;
+}
+
+input {
+    margin-bottom: 3px;
+}
+
+#apply_btn {
+    margin-left: 1em;
+    width: 20%;
+}

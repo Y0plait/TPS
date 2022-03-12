@@ -1,13 +1,14 @@
 {
     "tmdb_language": "FR",
+    "tmdb_api_key": "0b8f04cc00bf9b715120f6d1667612e7",
     "qbittorrent_webui": {
-        "ip": "",
-        "port": "",
+        "ip": "192.168.10.96",
+        "port": "8080",
         "credentials": {
             "username": "admin",
             "password": "pass"
         }
     },
-    "default_saving_path": "none",
+    "default_saving_path": "~/home/anton",
     "strict_search": "off"
 }

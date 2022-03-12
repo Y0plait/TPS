@@ -16,6 +16,7 @@ def config():
         qb_pass = request.form['qb_password']
         qb_username = request.form['qb_username']
         torrent_filepath = request.form['file_path']
+        tmdb_api_key = request.form['tmdb_api_key']
 
         # Dirty way to make it work when restrictive is off
         try:
@@ -25,6 +26,7 @@ def config():
 
         new_settings = {
             "tmdb_language": tmdb_lang,
+            "tmdb_api_key": tmdb_api_key,
             "qbittorrent_webui": {
                 "ip": qb_ip,
                 "port": qb_port,
