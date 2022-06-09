@@ -1,47 +1,29 @@
-import json
-from datetime import date
-from pathlib import Path
-
 from tmdbv3api import Movie, TMDb
+
+
+try:
+    from utils import update_tmdb_database
+except ModuleNotFoundError or ImportError:
+    from sys import path
+    path.insert(1, './app/')
+    from utils import update_tmdb_database
 
 from app import app, redirect, render_template, request, url_for
 
-# Loading the configuration file:
-with open('app/settings.json', 'r') as conf_file:
-    conf = json.loads(conf_file.read())
 
-tmdb = TMDb()
-tmdb.api_key = conf['tmdb_api_key']
-tmdb_poster_url = 'https://www.themoviedb.org/t/p/w400'
+"""
+@app.before_request
+def before_request():
+    ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+    print(ip, request.url)
 
-tmdb.language = conf['tmdb_language']
-tmdb.debug = True
 
-popular_today_file = f'./app/tmdb/{date.today()}.json'
-path = Path(popular_today_file)
+@app.after_request
+def after_request(response):
+    return response
+"""
 
-if path.is_file():
-    with open(popular_today_file, 'r', encoding='utf-8') as pop_file:
-        popular_films = json.loads(pop_file.read())
-
-else:
-    movie = Movie()
-    popular = movie.popular()
-    formatted_pop = {}
-
-    for p in popular:
-        formatted_pop.update({
-            p.id: {
-                'title': p.title,
-                'poster_path': tmdb_poster_url + p.poster_path,
-            }
-        })
-
-    with open(popular_today_file, 'w', encoding='utf-8') as pop_file:
-        pop_file.write(json.dumps(formatted_pop, indent=4))
-
-    popular_films = formatted_pop
-
+popular_films = update_tmdb_database()
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index.html', methods=['GET', 'POST'])
@@ -67,10 +49,10 @@ def mov_details(mov_id):
 
     movie = Movie()
     m = movie.details(mov_id)
-
     # User clicks the download button:
+    print(m.title)
     if request.method == 'POST':
-
+        # TODO make call to download-torrent.py when button clicked
         return render_template('details.html', movie_data=m, id=mov_id)
 
     # User access the page
